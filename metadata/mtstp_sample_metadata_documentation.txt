@@ -1,0 +1,83 @@
+﻿Document description : This document contains the definitions for each column header in the mtstp_sample_metadata.tsv file, as well as the descriptions for coded notes.
+
+	Section : mtstp_sample_metadata.tsv header descriptions
+
+		sample-id : A unique identifier given to each sample to differentiate them. All identifiers start with the project code and an underscore (mtstp_). The alpha-numeric character directly following the underscore represents developmental stage (3 = 3rd instar, 5 = 5th instar, E = early pupa, L = late pupa, A = adult). The next character represents the plant species the caterpillar was reared on (c = curassavica, i = incarnata). The next character represents if the sample was infected or uninfected with Ophryocystis elektroscirrha (i = infected, u = uninfected). The trailing numeric characters were added to make each sample-id unique (1-160) and do not correspond to any experimental parameters.
+
+		developmental-stage : One of 3rd-instar, 5th-instar, Early-pupa, Late-pupa, or Adult. Values indicate the developmental stage the sample was frozen at.
+
+		plant-diet : One of curassavica or incarnata. Values indicate what plant the sample was reared on. 
+
+		infection-status: One of infected and uninfected. Values indicate if the sample was infected or uninfected with Ophryocystis elektroscirrha.
+
+		lineage : One of EJ or AT. Values indicate which lineage the sample came from. The first character of each lineage code represents the sample's maternal lineage, and the second character represents the sample's paternal lineage.
+		
+		disc-pant : One of c1, c2, c3, c4, i1, i2, i3, i4. Values indicate the plant species and replicate that the leaf disc was removed from for Ophryocystis elektroscirrha inoculation. The fist character indicates plant species (c = curassavica, i = incarnata) and the trailing character indicates a number added to make the identifier unique.
+		
+		hatch-date : Date in MM-DD-YYYY format. Values indicate the date that the caterpillar hatched from its egg.
+		
+		parasite-id : All values are 23P4. Description will be filled in later.
+		
+		inoculation-date : Date in MM-DD-YYYY format. Values indicate the date caterpillars were fed a leaf disc for the uninfected group or a leaf disc with Ophryocystis elektroscirrha spores for the infected treatment group. 
+		
+		inoculation-time : Time in 24-hour format. Values indicate the time during the corresponding date that caterpillars were placed in Petri dishes with their leaf discs. All times are rounded to the nearest hour. For example, the time 14:00 corresponds the time interval from 13:30 to 14:29. 
+		
+		plant-tube-date : Date in MM-DD-YYYY format. Values indicate the dates that caterpillars were placed in the tubes containing their treatment plant.
+		
+		plant-tube-time : Time in 24-hour format. Values indicate the time during the corresponding date that caterpillars were placed in the tubes containing their treatment plant. All times are rounded to the nearest hour. For example, the time 14:00 corresponds the time interval from 13:30 to 14:29. 
+		
+		pupation-date : Date in MM-DD-YYYY format. Values indicate the date that the corresponding caterpillar pupated.
+		
+		pupation-check-time : Time in 24-hour format. Values indicate the time during the corresponding date that the pupation check was performed. All times are rounded to the nearest hour. For example, the time 14:00 corresponds the time interval from 13:30 to 14:29.
+		
+		days-hatch-to-pupation : The number of days from the caterpillar hatch date to its pupation date. Values are exclusive of the hatch date and inclusive of the pupation date. For example, a caterpillar that hatched on 05-05-2023 and pupated on 05-16-2023 would have a value of 11 in this column. 
+		
+		days-inoculation-to-pupation : The number of days from the inoculation date to the pupation date. Values are exclusive of the inoculation date and inclusive of the pupation date. For example, a caterpillar that was innoculated on 05-08-2023 and pupated on 05-16-2023 would have a value of 8 in this column.
+		
+		pupal-cup-date : Date in MM-DD-YYYY format. Values indicate the date that pupae were taped to the lids of solo cups.
+		
+		pupal-cup-time : Time in 24-hour format. Values indicate the time during corresponding date that pupae were taped to the lids of solo cups.
+		
+		initial-sign-of-infection-date : Date in MM-DD-YYYY format. Values indicate the data that pupal scores (evidence of infection) were first observed on the pupae.
+		
+		initial-sign-of-infection-check-time : Time in 24-hour format. Values indicate the time during corresponding date that initial signs of infection were recorded.
+		
+		final-pupal-score : One of 0, 1, 2, 3, 4, or 5. Values indicate the final pupal score recorded for the corresponding sample. 
+		
+		eclosion-date : Date formatted as MM-DD-YYYY. Values indicate the date that Monarchs eclosed from their pupae.
+		
+		eclosion-check-time : Time in 24-hour format. Values indicate the time during corresponding date that eclosion checks were performed.
+		
+		days-pupation-to-eclosion : The number of days from pupation date to eclosion date. Values are exclusive of the pupation date and inclusive of the eclosion date. For example, a caterpillar that pupated on 05-17-2023 and pupated on 05-27-2023 would have a value of 10 in this column.
+		
+		date-frozen : Date in MM-DD-YYYY format. Values indicate the date that the corresponding sample was frozen in liquid nitrogen and stored in a -80C freezer.
+		
+		time-frozen : Time in 24-hour format. Values indicate the time during corresponding date that the sample was frozen.
+		
+		days-pupa-when-frozen : The number of days pupal samples spent as pupae before being frozen. Values are exclusive of pupation date and inclusive of freezing date. For example, a sample that pupated on 05-16-2023 and was frozen on 05-17-2023 would have a value of 1 in this column.
+		
+		sex : One of M or F. Values indicate whether the sample was male or female (M = male, F = female).
+		
+		coded-notes : One or multiple of 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Values indicate note codes that are described in "Section : coded-notes descriptions"
+		
+		written-notes : Text notes about the corresponding sample that were more specific and did not merit coding.
+		
+	Section : coded-notes descriptions
+	
+		1 : Caterpillar had likely molted to third instar near the time of freezing, indicated by its proximity to molted skin.
+		
+		2 : Caterpillar likely finished leaf disc after the final check on the previous day. Therefore, there was likely a time gap between when the caterpillar finished the leaf disc and when it was placed in a plant tube. 
+		
+		3 : Caterpillar was a J at the time of pupation check. Therefore, the timing of pupation is more certain to the hour resolution. 
+		
+		4 : Caterpillar pupated onto tube wall, which caused the part of the pupa pressed against the wall to be flat. 
+		
+		5 : Caterpillar reached 5th instar the day before being frozen
+		
+		6 : Pupa did not detach from tube, net, or leaf with enough silk. Therefore, tape was applied directly to the cramaster. This process is depicted in pupae_cups_holding_tray.jpg in the images directory
+		
+		7 : Uncertain about the initial sign of infection but the sample was frozen anyway. This was done to keep the distribution of days spent as a pupa the same across treatment groups.
+		
+		8 : Butterfly had just eclosed upon pupation check, evidenced by its wings not being completely filled out. This is evidence that the butterfly eclosed close to the recorded eclosion check time.
+		
+		9 : Wings were already filled out at eclosion check. This means we are uncertain how long the Monarch had been a butterfly before freezing.
