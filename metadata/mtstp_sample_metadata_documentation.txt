@@ -50,6 +50,8 @@
 		
 		days-pupation-to-eclosion : The number of days from pupation date to eclosion date. Values are exclusive of the pupation date and inclusive of the eclosion date. For example, a caterpillar that pupated on 05-17-2023 and pupated on 05-27-2023 would have a value of 10 in this column.
 		
+		days-hatch-to-eclosion : The number of days from hatch date to eclosion date. Values are exclusive of the hatch date and inclusive of the eclosion date. For example, a caterpillar that hatched on 05-05-2023 and eclosed on 05-26-2023 would have a value of 21 in this column.
+		
 		date-frozen : Date in MM-DD-YYYY format. Values indicate the date that the corresponding sample was frozen in liquid nitrogen and stored in a -80C freezer.
 		
 		time-frozen : Time in 24-hour format. Values indicate the time during corresponding date that the sample was frozen.
