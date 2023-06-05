@@ -25,7 +25,19 @@ Image: fifth_instar_on_milkweed.jpg
 Description: Image showing fifth instar monarch caterpillar on A. curassavica milkweed
 
 Image: third_instar_in_leaf_disc_dish.jpg
-Description: Image shows a third install caterpillar in a petri dish containing a milkweed leaf disc. This image depicts how parasite infection was performed
+Description: Image showing a third install caterpillar in a petri dish containing a milkweed leaf disc. This image depicts how parasite infection was performed
 
 Image: leaf_disc_dishes_setup.jpg
-Description: Image shows how petri dishes were arranged as caterpillars ate their leaf discs
+Description: Image showing how petri dishes were arranged as caterpillars ate their leaf discs
+
+Image : monarch_mating_cages.jpg
+Description : Image showing monarch mating cages in climate controlled chamber
+
+Image : monarch_feeding_on_honey_water.jpg
+Description : Image showing monarch feeding on honey water in petri dish
+
+Image : monarch_oviposition_cages.jpg
+Description : Image showing female monarch butterflies in cages with A. curassavica for oviposition
+
+Image : monarch_on_oviposition_plant.jpg
+Description : Image showing female monatch on A. curassavica
