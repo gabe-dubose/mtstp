@@ -60,6 +60,10 @@
 		
 		sex : One of M or F. Values indicate whether the sample was male or female (M = male, F = female).
 		
+		extract : One of 0 or 1. Values indicate whether or not the corresponding sample was used for RNA extraction (1 = Yes, 0 = No).
+		
+		homogenization-date : Date in MM-DD-YYYY format. Values indicate the date that the corresponding sampel was homogenized.
+		
 		coded-notes : One or multiple of 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Values indicate note codes that are described in "Section : coded-notes descriptions"
 		
 		written-notes : Text notes about the corresponding sample that were more specific and did not merit coding.
