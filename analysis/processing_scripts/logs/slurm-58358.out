@@ -1,0 +1,10 @@
+
+[build] loading fasta file /home/jdubos2/mtstp/data/dpl_genome/cds.fasta
+[build] k-mer length: 31
+[build] warning: replaced 4 non-ACGUT characters in the input sequence
+        with pseudorandom nucleotides
+[build] counting k-mers ... done.
+[build] building target de Bruijn graph ...  done 
+[build] creating equivalence classes ...  done
+[build] target de Bruijn graph has 27277 contigs and contains 18231723 k-mers 
+
