@@ -106,20 +106,20 @@ get.edgeR.dges <- function(developmental.stage, outfile.handle, data) {
 
 #get third instar dges
 third.instar.data <- parse.data("third-instar")
-get.edgeR.dges('third-instar', '/home/gabe/Desktop/mtstp/analysis/data/edgeR_data/third_instar_inf_vs_uninf', third.instar.data)
+get.edgeR.dges('third-instar', 'data/edgeR/infected_vs_uninfected_by_plant/third_instar_inf_vs_uninf', third.instar.data)
 
 #get fifth instar dges
 fifth.instar.data <- parse.data("fifth-instar")
-get.edgeR.dges('fifth-instar', '/home/gabe/Desktop/mtstp/analysis/data/edgeR_data/fifth_instar_inf_vs_uninf', fifth.instar.data)
+get.edgeR.dges('fifth-instar', 'data/edgeR/infected_vs_uninfected_by_plant/fifth_instar_inf_vs_uninf', fifth.instar.data)
 
 #get early pupa dges
 early.pupa.data <- parse.data("early-pupa")
-get.edgeR.dges('early-pupa', '/home/gabe/Desktop/mtstp/analysis/data/edgeR_data/early_pupa_inf_vs_uninf', early.pupa.data)
+get.edgeR.dges('early-pupa', 'data/edgeR/infected_vs_uninfected_by_plant/early_pupa_inf_vs_uninf', early.pupa.data)
 
 #get late pupa dges
 late.pupa.data <- parse.data("late-pupa")
-get.edgeR.dges('late-pupa', '/home/gabe/Desktop/mtstp/analysis/data/edgeR_data/late_pupa_inf_vs_uninf', late.pupa.data)
+get.edgeR.dges('late-pupa', 'data/edgeR/infected_vs_uninfected_by_plant/late_pupa_inf_vs_uninf', late.pupa.data)
 
 #get adult dges
 adult.data <- parse.data("adult")
-get.edgeR.dges('adult', '/home/gabe/Desktop/mtstp/analysis/data/edgeR_data/adult_inf_vs_uninf', adult.data)
+get.edgeR.dges('adult', 'data/edgeR/infected_vs_uninfected_by_plant/adult_inf_vs_uninf', adult.data)
