@@ -1,0 +1,60 @@
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 8 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/dpl_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/star_alignment_results/mtstpEcu36_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpEcu36_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpEcu36_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.10b   compiled: 2023-02-10T18:11:41+00:00 :/home/jdubos2/STAR-2.7.10b/source
+Sep 15 13:43:19 ..... started STAR run
+Sep 15 13:43:19 ..... loading genome
+Sep 15 13:43:21 ..... started mapping
+Sep 15 13:52:36 ..... finished mapping
+Sep 15 13:52:37 ..... finished successfully
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 8 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/dpl_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/star_alignment_results/mtstpEcu38_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpEcu38_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpEcu38_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.10b   compiled: 2023-02-10T18:11:41+00:00 :/home/jdubos2/STAR-2.7.10b/source
+Sep 15 13:52:37 ..... started STAR run
+Sep 15 13:52:37 ..... loading genome
+Sep 15 13:52:39 ..... started mapping
+Sep 15 14:02:11 ..... finished mapping
+Sep 15 14:02:11 ..... finished successfully
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 8 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/dpl_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/star_alignment_results/mtstpEii121_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpEii121_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpEii121_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.10b   compiled: 2023-02-10T18:11:41+00:00 :/home/jdubos2/STAR-2.7.10b/source
+Sep 15 14:02:11 ..... started STAR run
+Sep 15 14:02:11 ..... loading genome
+Sep 15 14:02:14 ..... started mapping
+Sep 15 14:14:39 ..... finished mapping
+Sep 15 14:14:39 ..... finished successfully
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 8 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/dpl_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/star_alignment_results/mtstpEii122_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpEii122_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpEii122_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.10b   compiled: 2023-02-10T18:11:41+00:00 :/home/jdubos2/STAR-2.7.10b/source
+Sep 15 14:14:40 ..... started STAR run
+Sep 15 14:14:40 ..... loading genome
+Sep 15 14:14:42 ..... started mapping
+Sep 15 14:23:35 ..... finished mapping
+Sep 15 14:23:36 ..... finished successfully
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 8 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/dpl_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/star_alignment_results/mtstpEii123_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpEii123_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpEii123_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.10b   compiled: 2023-02-10T18:11:41+00:00 :/home/jdubos2/STAR-2.7.10b/source
+Sep 15 14:23:36 ..... started STAR run
+Sep 15 14:23:36 ..... loading genome
+Sep 15 14:23:38 ..... started mapping
+Sep 15 14:35:35 ..... finished mapping
+Sep 15 14:35:36 ..... finished successfully
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory
+/var/spool/slurm/d/job58349/slurm_script: line 36: /home/jdubos2/bin/STAR: No such file or directory

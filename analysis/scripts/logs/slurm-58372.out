@@ -1,0 +1,61 @@
+Working on mtstp3ci9_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstp3ci9_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstp3ci9_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstp3ci9_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 19 11:36:49 ..... started STAR run
+Sep 19 11:36:49 ..... loading genome
+Sep 19 11:36:50 ..... started mapping
+Sep 19 20:50:53 ..... finished mapping
+Sep 19 20:50:53 ..... finished successfully
+Completed mtstp3ci9_
+Working on mtstp5ci25_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstp5ci25_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci25_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci25_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 19 20:50:53 ..... started STAR run
+Sep 19 20:50:53 ..... loading genome
+Sep 19 20:50:56 ..... started mapping
+Sep 20 12:31:59 ..... finished mapping
+Sep 20 12:31:59 ..... finished successfully
+Completed mtstp5ci25_
+Working on mtstp5ci26_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstp5ci26_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci26_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci26_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 20 12:31:59 ..... started STAR run
+Sep 20 12:32:00 ..... loading genome
+Sep 20 12:32:02 ..... started mapping
+Sep 20 22:57:06 ..... finished mapping
+Sep 20 22:57:06 ..... finished successfully
+Completed mtstp5ci26_
+Working on mtstp5ci27_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstp5ci27_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci27_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci27_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 20 22:57:07 ..... started STAR run
+Sep 20 22:57:07 ..... loading genome
+Sep 20 22:57:09 ..... started mapping
+Sep 21 10:50:15 ..... finished mapping
+Sep 21 10:50:15 ..... finished successfully
+Completed mtstp5ci27_
+Working on mtstp5ci28_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstp5ci28_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci28_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstp5ci28_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 21 10:50:15 ..... started STAR run
+Sep 21 10:50:15 ..... loading genome
+Sep 21 10:50:18 ..... started mapping
+Sep 21 21:39:12 ..... finished mapping
+Sep 21 21:39:12 ..... finished successfully
+Completed mtstp5ci28_
+Working on mtstpAci73_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstpAci73_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpAci73_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpAci73_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 21 21:39:13 ..... started STAR run
+Sep 21 21:39:13 ..... loading genome
+Sep 21 21:39:16 ..... started mapping
+Sep 22 04:40:42 ..... finished mapping
+Sep 22 04:40:42 ..... finished successfully
+Completed mtstpAci73_
+Working on mtstpAci74_
+	STAR --runMode alignReads --outSAMtype BAM Unsorted --runThreadN 20 --readFilesCommand zcat --genomeDir /home/jdubos2/mtstp/data/oe_genome/star_index --outFileNamePrefix /home/jdubos2/mtstp/data/oe_star_alignment_results/mtstpAci74_ --readFilesIn /home/jdubos2/mtstp/data/raw_sequences/mtstpAci74_1.fq.gz /home/jdubos2/mtstp/data/raw_sequences/mtstpAci74_2.fq.gz --quantMode GeneCounts
+	STAR version: 2.7.11a   compiled: 2023-08-15T11:38:34-04:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Sep 22 04:40:43 ..... started STAR run
+Sep 22 04:40:43 ..... loading genome
+Sep 22 04:40:46 ..... started mapping
+slurmstepd-bio: error: *** JOB 58372 ON bio CANCELLED AT 2023-09-22T11:36:51 DUE TO TIME LIMIT ***
