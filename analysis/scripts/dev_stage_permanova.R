@@ -1,21 +1,20 @@
 library(vegan)
-
+library(tidyverse)
 #load data
-data <- read.csv('data/counts_tables/dpl_tpm_counts_kallisto.csv')
+data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_tpm_counts_kallisto.csv')
 colnames(data)[1] <- "sample.id"
 
 #load metadata
-metadata <- read.csv('data/mtstp_analysis_metadata.tsv', sep='\t')
+metadata <- read.csv('/home/gabe/Desktop/mtstp/data/experiment_metadata/mtstp_analysis_metadata.tsv', sep='\t')
+metadata <- subset(metadata, infection.status != "infected")
 colnames(metadata)
 #remove infected
-#metadata <- subset(metadata, infection.status != "infected")
-library("tidyverse")
 
 test <- metadata %>%
   left_join(data, by = c("sample.id"))
 
 trt <- test %>%
-  select(c("sample.id","developmental.stage"))
+  select(c("sample.id","developmental.stage", "plant"))
 
 data2 <- test %>%
   select(-c("sample.id", "plant", "infection.status", "developmental.stage", "lineage"))
@@ -24,9 +23,12 @@ rm(test)
 #load distance matrix
 #manhattan.matrix <- read.csv('data/distance_matricies/manhattan.csv')
 manhattan.matrix <- dist(data2, method='manhattan')
-ad.test <- adonis2(manhattan.matrix ~ developmental.stage, data = trt)
+clusts <- hclust(manhattan.matrix)
+plot(clusts)
 
-
+ad.test <- adonis2(manhattan.matrix ~ developmental.stage+plant, data = trt)
+ad.test
+?adonis
 #This code was retreived from https://github.com/pmartinezarbizu/pairwiseAdonis/blob/master/pairwiseAdonis/R/pairwise.adonis.R
 pairwise.adonis2 <- function(x, data, strata = NULL, nperm=999, ... ) {
   
@@ -110,8 +112,12 @@ summary.pwadstrata = function(object, ...) {
 }
 
 #run pairwise permanova
-ad.pairwise <- pairwise.adonis2(manhattan.matrix ~ developmental.stage, data = trt)
+ad.pairwise <- pairwise.adonis2(manhattan.matrix ~ developmental.stage+plant, data = trt)
 ad.pairwise$`third-instar_vs_fifth-instar`
 ad.pairwise$`fifth-instar_vs_early-pupa`
-ad.pairwise$`adult_vs_late-pupa`
 ad.pairwise$`early-pupa_vs_late-pupa`
+ad.pairwise$`adult_vs_late-pupa`
+
+ad.pairwise$`third-instar_vs_adult`
+ad.pairwise$`fifth-instar_vs_adult`
+ad.pairwise$`third-instar_vs_early-pupa`
