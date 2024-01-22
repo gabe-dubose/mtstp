@@ -101,7 +101,7 @@ compute.phylogeny.expression.correlations <- function(gene.clusters, expression.
           
           #run mantel test
           #standardized
-          mantel.stadardized <- vegan::mantel(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance), permutations = 0)
+          mantel.stadardized <- vegan::mantel(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance), permutations = 999)
           corr.coeff.standardized <- mantel.stadardized$statistic
           significance <- mantel.stadardized$signif
           standard.data <- c(standard.data, corr.coeff.standardized)
