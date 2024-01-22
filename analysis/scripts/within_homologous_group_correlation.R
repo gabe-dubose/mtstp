@@ -39,7 +39,7 @@ mean.center.standardize <- function(df) {
   }))
 }
 
-#A function to compare gene family phylogenetic diversity to their expression pattern diversity
+#A function to compare phylogenetic divergence to their expression pattern divergence within gene families
 # input[gene.clusters] : Path to JSON file, where each key is the name of a gene cluster 
 #                        and the values are a list of the ids in the corresponding 
 #                        cluster. File must be readable by rjson.
@@ -50,10 +50,12 @@ mean.center.standardize <- function(df) {
 #                                                expression pattern diversity metrics.
 # input[phylogenies.dir.path]: The path to a directory containing phylogenetic trees in newick format
 # input[file.extension]: The file extension for phylogeny files
-compute.expression.pattern.diversity <- function(gene.clusters, expression.data, phylogenies.dir.path, file.extension) {
+compute.phylogeny.expression.correlations <- function(gene.clusters, expression.data, phylogenies.dir.path, file.extension) {
   #initialize vector to store data
   standard.data <- c()
   signif.values <- c()
+  group.size <- c()
+  group.pd <- c()
   #load sequence clusters
   sequence.clusters <- gene.clusters
   #sequence.clusters <- rjson::fromJSON(file=gene.clusters)
@@ -85,7 +87,7 @@ compute.expression.pattern.diversity <- function(gene.clusters, expression.data,
         cluster.gene.tree.path <- paste(phylogenies.path, "/", cluster.gene.tree.file, sep="")
         #read tree
         gene.tree <- ape::read.tree(cluster.gene.tree.path)
-        #phylogenetic distance 
+        #phylogenetic distance matrix
         phylogenetic.distance.matrix <- as.matrix(ape::cophenetic.phylo(gene.tree))
         
         if (length(phylogenetic.distance.matrix) == length(standardized.expression.distance)) {
@@ -99,18 +101,27 @@ compute.expression.pattern.diversity <- function(gene.clusters, expression.data,
           
           #run mantel test
           #standardized
-          mantel.stadardized <- vegan::mantel(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance), permutations = 999)
+          mantel.stadardized <- vegan::mantel(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance), permutations = 0)
           corr.coeff.standardized <- mantel.stadardized$statistic
           significance <- mantel.stadardized$signif
           standard.data <- c(standard.data, corr.coeff.standardized)
           signif.values <- c(signif.values, significance)
+          
+          #calculate branch lengths
+          branch.lengths <- gene.tree$edge.length
+          #calculate phylogenetic diversity
+          sum.of.lengths <- sum(branch.lengths)
+          group.pd <- c(group.pd, sum.of.lengths)
+          group.size <- c(group.size, length(gene.tree$tip.label))
         } 
       }
     }
   }
   #assemble output
   correlation.results <- list("r" = standard.data,
-                              'p' = signif.values)
+                              'p' = signif.values,
+                              "group.size" = group.size,
+                              "group.pd" = group.pd)
   return(correlation.results)
   
 }
@@ -156,7 +167,7 @@ gene.clusters.file <- "/home/gabe/Desktop/mtstp/data/intermediate_data/gene_clus
 gene.clusters.data <- rjson::fromJSON(file=gene.clusters.file)
 phylogenies.path <- '/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/inferred_phylogenies_close'
 file.extension <- '_alignment.fasta.treefile'
-distance.correlations <- compute.expression.pattern.diversity(gene.clusters.data, median.values, phylogenies.path, file.extension)
+distance.correlations <- compute.phylogeny.expression.correlations(gene.clusters.data, median.values, phylogenies.path, file.extension)
 distance.correlations.df <- data.frame(distance.correlations)
 write.csv(distance.correlations.df, "/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/phylogenetic_vs_expression_distance.csv")
 
