@@ -19,14 +19,14 @@ trt <- test %>%
 data2 <- test %>%
   select(-c("sample.id", "plant", "infection.status", "developmental.stage", "lineage"))
 
-rm(test)
-#load distance matrix
-#manhattan.matrix <- read.csv('data/distance_matricies/manhattan.csv')
-manhattan.matrix <- dist(data2, method='manhattan')
-clusts <- hclust(manhattan.matrix)
-plot(clusts)
 
-ad.test <- adonis2(manhattan.matrix ~ developmental.stage+plant, data = trt)
+#calculat distance matrix using pearson distances
+data3 <- t(data2)
+pearson.correlation.matrix <- cor(data3, method="pearson")
+pearson.correlation.matrix <- (1 - pearson.correlation.matrix)/2
+pearson.correlation.matrix <- as.dist(pearson.correlation.matrix)
+
+ad.test <- adonis2(pearson.correlation.matrix ~ developmental.stage+plant, data = trt)
 ad.test
 
 #This code was retrieved from https://github.com/pmartinezarbizu/pairwiseAdonis/blob/master/pairwiseAdonis/R/pairwise.adonis.R
@@ -112,7 +112,7 @@ summary.pwadstrata = function(object, ...) {
 }
 
 #run pairwise permanova
-ad.pairwise <- pairwise.adonis2(manhattan.matrix ~ developmental.stage+plant, data = trt)
+ad.pairwise <- pairwise.adonis2(pearson.correlation.matrix ~ developmental.stage+plant, data = trt)
 ad.pairwise$`third-instar_vs_fifth-instar`
 ad.pairwise$`fifth-instar_vs_early-pupa`
 ad.pairwise$`early-pupa_vs_late-pupa`

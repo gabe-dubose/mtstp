@@ -39,6 +39,80 @@ mean.center.standardize <- function(df) {
   }))
 }
 
+#A Function to extract pairwise comparisons for phylogenetic-expression divergence correlations
+create.pairwise.dataframe <- function(phylogenetic.distance.matrix, expression.pattern.distance.matrix) {
+  #get gene names
+  gene.ids <- rownames(phylogenetic.distance.matrix)
+  
+  # Create an empty dataframe to store pairwise comparisons
+  pairwise.df <- data.frame(gene1 = character(),
+                            gene2 = character(),
+                            phylogenetic.distance = double(),
+                            expression.distance = double(),
+                            stringsAsFactors = FALSE)
+  
+  recorded <- c()
+  # Loop through pairs of genes
+  for (i in 1:length(gene.ids)){
+    for (j in 1:length(gene.ids)){
+      #check if gene ids are different
+      if (gene.ids[i] != gene.ids[j]){
+        #check if comparison has already been recorded
+        pair1 <- c(gene.ids[i], gene.ids[j])
+        pair2 <- c(gene.ids[j], gene.ids[i])
+        
+        #add to dataframe
+        # Extract distances from both matrices
+        phylo.dist <- phylogenetic.distance.matrix[gene.ids[i], gene.ids[j]]
+        expr.dist <- expression.pattern.distance.matrix[gene.ids[i], gene.ids[j]]
+        # Append to the dataframe
+        pairwise.df <- rbind(pairwise.df, data.frame(gene1 = gene.ids[i],
+                                                     gene2 = gene.ids[j],
+                                                     phylogenetic.distance = phylo.dist,
+                                                     expression.distance = expr.dist))
+      }
+    }
+  }
+  return(pairwise.df)
+}
+
+#A Function to extract pairwise comparisons for phylogenetic-expression divergence correlations
+create.pairwise.dataframe <- function(phylogenetic.distance.matrix, expression.pattern.distance.matrix) {
+  #get gene names
+  gene.ids <- rownames(phylogenetic.distance.matrix)
+  
+  # Create an empty dataframe to store pairwise comparisons
+  pairwise.df <- data.frame(gene1 = character(),
+                            gene2 = character(),
+                            phylogenetic.distance = double(),
+                            expression.distance = double(),
+                            stringsAsFactors = FALSE)
+  
+  recorded <- c()
+  # Loop through pairs of genes
+  for (i in 1:length(gene.ids)){
+    for (j in 1:length(gene.ids)){
+      #check if gene ids are different
+      if (gene.ids[i] != gene.ids[j]) {
+        #check if comparison has already been recorded
+        pair1 <- c(gene.ids[i], gene.ids[j])
+        pair2 <- c(gene.ids[j], gene.ids[i])
+        
+        #add to dataframe
+        # Extract distances from both matrices
+        phylo.dist <- phylogenetic.distance.matrix[gene.ids[i], gene.ids[j]]
+        expr.dist <- expression.pattern.distance.matrix[gene.ids[i], gene.ids[j]]
+        # Append to the dataframe
+        pairwise.df <- rbind(pairwise.df, data.frame(gene1 = gene.ids[i],
+                                                     gene2 = gene.ids[j],
+                                                     phylogenetic.distance = phylo.dist,
+                                                     expression.distance = expr.dist))
+      }
+    }
+  }
+  return(pairwise.df)
+}
+
 #A function to compare phylogenetic divergence to their expression pattern divergence within gene families
 # input[gene.clusters] : Path to JSON file, where each key is the name of a gene cluster 
 #                        and the values are a list of the ids in the corresponding 
@@ -56,6 +130,7 @@ compute.phylogeny.expression.correlations <- function(gene.clusters, expression.
   signif.values <- c()
   group.size <- c()
   group.pd <- c()
+  cluster.ids.used <- c()
   #load sequence clusters
   sequence.clusters <- gene.clusters
   #sequence.clusters <- rjson::fromJSON(file=gene.clusters)
@@ -102,6 +177,17 @@ compute.phylogeny.expression.correlations <- function(gene.clusters, expression.
           #run mantel test
           #standardized
           mantel.stadardized <- vegan::mantel(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance), permutations = 999)
+          
+          #get example data
+          if (id == 'group_340'){
+            ex1.df <- create.pairwise.dataframe(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance))
+            write.csv(ex1.df, '/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/group_340_correlation_example.csv')
+          }
+          
+          if (id == 'group_823'){
+            ex1.df <- create.pairwise.dataframe(as.matrix(phylogenetic.distance.matrix), as.matrix(standardized.expression.distance))
+            write.csv(ex1.df, '/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/group_823_correlation_example.csv')
+          }
           corr.coeff.standardized <- mantel.stadardized$statistic
           significance <- mantel.stadardized$signif
           standard.data <- c(standard.data, corr.coeff.standardized)
@@ -113,12 +199,16 @@ compute.phylogeny.expression.correlations <- function(gene.clusters, expression.
           sum.of.lengths <- sum(branch.lengths)
           group.pd <- c(group.pd, sum.of.lengths)
           group.size <- c(group.size, length(gene.tree$tip.label))
+          
+          #add cluster id
+          cluster.ids.used <- c(cluster.ids.used, id)
         } 
       }
     }
   }
   #assemble output
-  correlation.results <- list("r" = standard.data,
+  correlation.results <- list("cluster.id" = cluster.ids.used,
+                              "r" = standard.data,
                               'p' = signif.values,
                               "group.size" = group.size,
                               "group.pd" = group.pd)
@@ -169,7 +259,7 @@ phylogenies.path <- '/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluste
 file.extension <- '_alignment.fasta.treefile'
 distance.correlations <- compute.phylogeny.expression.correlations(gene.clusters.data, median.values, phylogenies.path, file.extension)
 distance.correlations.df <- data.frame(distance.correlations)
-write.csv(distance.correlations.df, "/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/phylogenetic_vs_expression_distance.csv")
+write.csv(distance.correlations.df, "/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/phylogenetic_vs_expression_distance_named.csv")
 
 #test that distribution is different from 0
 shapiro.test(distance.correlations.df$r)

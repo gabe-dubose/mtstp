@@ -35,3 +35,4 @@ manhattan.matrix <- as.matrix(manhattan.matrix, labels=TRUE)
 colnames(manhattan.matrix) <- rownames(manhattan.matrix) <- singleton.genes.data[['sample.id']]
 #write to file
 write.csv(manhattan.matrix, '/home/gabe/Desktop/mtstp/data/intermediate_data/distance_matricies/singleton_only_manhattan_distant.csv')
+
