@@ -116,7 +116,7 @@ compute.expression.pattern.diversity <- function(gene.clusters, expression.data,
 }
 
 #load total expression data
-total.expression.data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_tpm_counts_kallisto.csv')
+total.expression.data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_log_tpm_counts_kallisto.csv')
 #load metadata
 metadata <- read.csv('/home/gabe/Desktop/mtstp/data/experiment_metadata/mtstp_analysis_metadata.tsv', sep='\t')
 #remove infected data

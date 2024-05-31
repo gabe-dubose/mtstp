@@ -255,163 +255,9 @@ compute.gene.cluster.phylogenetic.diversity <- function(phylogenies.dir.path, fi
   return(phylogenetic.diversity.data)
 }
 
-#A function to randomly generate gene clusters
-random.gene.clusters <- function(gene.clusters, total.expression.data) {
-  #initialize list for random gene assignments
-  random.clusters <- list()
-  #load gene clusters
-  sequence.clusters <- gene.clusters
-  #get list of available gene
-  gene.ids <- c(total.expression.data$genes)
-  #get cluster ids
-  cluster.ids <- names(sequence.clusters)
-  #iterate through each cluster
-  for (cluster.id in cluster.ids) {
-    cluster <- sequence.clusters[[cluster.id]]
-    n <- length(cluster)
-    #randomly sample n gene ids
-    random.ids <- sample(gene.ids, n)
-    #assign random ids to cluster in random.cluster list
-    random.clusters[[cluster.id]] <- random.ids
-  }
-  return(random.clusters)
-}
-
-#A function to test if the correlation between gene cluster diversity and expression diversity is random
-#phylo.data <- compute.gene.cluster.phylogenetic.diversity(phylogenies.path, file.extension, gene.expression.diversity)
-null.test <- function(total.expression.data, gene.family.data, clusters.file, iterations) {
-  
-  #initialize vectors to store local observed values
-  local.slopes <- list()
-  local.intercepts <- list()
-  local.r2 <- list()
-  
-  #initialize vectors to store null values
-  global.null.slope.values <- c()
-  global.null.intercept.values <- c()
-  global.null.r2.values <- c()
-  local.null.slope.values <- list()
-  local.null.intercept.values <- list()
-  local.null.r2.values <- list()
-  
-  #convert NAs
-  gene.family.data[gene.family.data == "NA"] <- NA
-  #gene.family.data <- subset(gene.family.data, !apply(gene.family.data == "NA", 1, any))
-  #calculate correlation between standardized expression pattern diversity and gene cluster phylogenetic diversity
-  gene.family.data$gene.cluster.phylogenetic.diversity <- as.numeric(gene.family.data$gene.cluster.phylogenetic.diversity)
-  gene.family.data$standardized.expression.pattern.diversity <- as.numeric(gene.family.data$standardized.expression.pattern.diversity)
-  global.linear.model <- lm(standardized.expression.pattern.diversity~gene.cluster.phylogenetic.diversity, data = gene.family.data, na.action = na.omit)
-  global.linear.model.summary <- summary(global.linear.model)
-  global.observed.slope <- global.linear.model.summary$coefficients[2]
-  global.observed.intercept <- global.linear.model.summary$coefficients[1]
-  global.observed.r2 <- global.linear.model.summary$r.squared
-  
-  #calculate local correlations
-  #initialize vector to store gene family sizes that have enough points
-  gene.family.sizes.n5 <- c()
-  #get unique gene family sizes
-  gene.family.sizes <- unique(gene.family.data$n.genes)
-  #gene.family.sizes <- gene.family.sizes[gene.family.sizes != NA]
-  gene.family.sizes <- gene.family.sizes[!is.na(gene.family.sizes)]
-  for (gene.family.size in gene.family.sizes) {
-    #get data
-    local.data <- gene.family.data[gene.family.data$n.genes == gene.family.size, ]
-    #remove NAs
-    local.data <- na.omit(local.data)
-    #check if there are at least five points
-    if (nrow(local.data) >= 5) {
-      #add to list
-      gene.family.sizes.n5 <- c(gene.family.sizes.n5, gene.family.size)
-      #make linear model
-      local.linear.model <- lm(standardized.expression.pattern.diversity~gene.cluster.phylogenetic.diversity, data = local.data)
-      #print(local.linear.model)
-      local.linear.model.summary <- summary(local.linear.model)
-      local.observed.slope <- local.linear.model.summary$coefficients[2]
-      local.observed.intercept <- local.linear.model.summary$coefficients[1]
-      local.observed.r2 <- local.linear.model.summary$r.squared
-      
-      #add to local values
-      local.slopes[[gene.family.size]] <- local.observed.slope
-      local.r2[[gene.family.size]] <- local.observed.r2
-      
-      #add gene family sizes to null list
-      local.null.slope.values[[gene.family.size]] <- c()
-      local.null.intercept.values[[gene.family.size]] <- c()
-      local.null.r2.values[[gene.family.size]] <- c()
-    }
-  }
-  
-  for (i in 1:iterations) {
-    print(paste("Working on iteration: ", i, sep=""))
-    #generate random gene clusters
-    random.clusters <- random.gene.clusters(clusters.file, total.expression.data)
-    
-    #global analysis
-    
-    #calculate expression pattern diversity
-    global.expression.pattern.diversity <- compute.expression.pattern.diversity(random.clusters, total.expression.data)
-    #return(list("gene.family.data" = gene.family.data, "global.expression.pattern.diversity" = global.expression.pattern.diversity))
-    #filter data
-    #unique_clusters <- unique(gene.family.data$cluster)
-    #global.expression.pattern.diversity <- global.expression.pattern.diversity[global.expression.pattern.diversity$cluster %in% unique_clusters, ]
-    #combine data
-    
-    global.expression.pattern.diversity <- cbind(global.expression.pattern.diversity, data.frame(gene.family.data$gene.cluster.phylogenetic.diversity))
-    global.expression.pattern.diversity <- cbind(global.expression.pattern.diversity, data.frame(gene.family.data$n.genes))
-    #fit linear model to standardized gene
-    global.expression.pattern.diversity$gene.family.data.gene.cluster.phylogenetic.diversity <- as.numeric(global.expression.pattern.diversity$gene.family.data.gene.cluster.phylogenetic.diversity)
-    global.expression.pattern.diversity$standardized.expression.pattern.diversity <- as.numeric(global.expression.pattern.diversity$standardized.expression.pattern.diversity)
-    random.linear.model <- lm(standardized.expression.pattern.diversity~gene.family.data.gene.cluster.phylogenetic.diversity, data = global.expression.pattern.diversity)
-    #get values
-    random.linear.model.summary <- summary(random.linear.model)
-    random.global.slope <- random.linear.model.summary$coefficients[2]
-    random.global.intercept <- random.linear.model.summary$coefficients[1]
-    random.global.r2 <- random.linear.model.summary$r.squared
-    
-    #add values to output
-    global.null.slope.values <- c(global.null.slope.values, random.global.slope)
-    global.null.r2.values <- c(global.null.r2.values, random.global.r2)
-    global.null.intercept.values <- c(global.null.intercept.values, random.global.intercept)
-    
-    #local analysis
-    
-    #iterate through each gene family size that has appropriate sample size
-    for (gene.family.size in gene.family.sizes.n5) {
-      #subset data
-      random.local.data <- global.expression.pattern.diversity[global.expression.pattern.diversity$gene.family.data.n.genes == gene.family.size, ]
-      #fit linear model
-      random.local.linear.model <- lm(standardized.expression.pattern.diversity~gene.family.data.gene.cluster.phylogenetic.diversity, data = random.local.data)
-      #get values
-      random.local.linear.model.summary <- summary(random.local.linear.model)
-      random.local.slope <- random.local.linear.model.summary$coefficients[2]
-      random.local.intercept <- random.local.linear.model.summary$coefficients[1]
-      random.local.r2 <- random.local.linear.model.summary$r.squared
-      
-      #add values to null lists
-      local.null.slope.values[[gene.family.size]] <- c(local.null.slope.values[[gene.family.size]], random.local.slope)
-      local.null.r2.values[[gene.family.size]] <- c(local.null.r2.values[[gene.family.size]], random.local.r2)
-      local.null.intercept.values[[gene.family.size]] <- c(local.null.intercept.values[[gene.family.size]], random.local.intercept)
-    }
-  }
-  #assemble output
-  null.model.results <- list("global.slope" = global.observed.slope,
-                             "global.intercept" = global.observed.intercept,
-                             "global.null.slope.distribution" = global.null.slope.values,
-                             "global.null.intercept.distribution" = global.null.intercept.values,
-                             "global.r2" = global.observed.r2,
-                             "global.null.r2.distribution" = global.null.r2.values,
-                             "local.slopes" = local.slopes,
-                             "local.r2" = local.r2,
-                             "local.null.slope.distributions" = local.null.slope.values,
-                             "local.null.intercept.distributions" = local.null.intercept.values,
-                             "local.null.r2.distributions" = local.null.r2.values)
-  #return(null.model.results)
-  return(null.model.results)
-}
-
 
 #load total expression data
-total.expression.data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_tpm_counts_kallisto.csv')
+total.expression.data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_log_tpm_counts_kallisto.csv')
 #load metadata
 metadata <- read.csv('/home/gabe/Desktop/mtstp/data/experiment_metadata/mtstp_analysis_metadata.tsv', sep='\t')
 #remove infected data
@@ -458,6 +304,8 @@ file.extension <- '_alignment.fasta.treefile'
 phylo.data <- compute.gene.cluster.phylogenetic.diversity(phylogenies.path, file.extension, gene.expression.diversity)
 phylo.data$standardized.expression.pattern.diversity <- as.numeric(phylo.data$standardized.expression.pattern.diversity)
 phylo.data$gene.cluster.phylogenetic.diversity <- as.numeric(phylo.data$gene.cluster.phylogenetic.diversity)
+
+write.csv(phylo.data, '/home/gabe/Desktop/mtstp/data/intermediate_data/gene_cluster_diversity_analysis/gene_family_diversity_vs_expression_diversity_global_data_distant.csv', row.names=FALSE)
 
 #Get correlations for each group size
 #global

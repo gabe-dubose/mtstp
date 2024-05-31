@@ -217,7 +217,7 @@ compute.phylogeny.expression.correlations <- function(gene.clusters, expression.
 }
 
 #load total expression data
-total.expression.data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_tpm_counts_kallisto.csv')
+total.expression.data <- read.csv('/home/gabe/Desktop/mtstp/data/intermediate_data/count_tables/dpl_log_tpm_counts_kallisto.csv')
 #load metadata
 metadata <- read.csv('/home/gabe/Desktop/mtstp/data/experiment_metadata/mtstp_analysis_metadata.tsv', sep='\t')
 #remove infected data
@@ -264,7 +264,6 @@ write.csv(distance.correlations.df, "/home/gabe/Desktop/mtstp/data/intermediate_
 #test that distribution is different from 0
 shapiro.test(distance.correlations.df$r)
 t.test(distance.correlations.df$r, mu = 0)
-wilcox.test(distance.correlations.df$r, mu = 0, alternative = "two.sided")
 
 
 

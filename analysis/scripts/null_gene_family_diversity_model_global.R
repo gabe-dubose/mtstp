@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript 
 #A function to extract protein ids from NCBI gene ids
 # input[id]: An NCBI gene id that has the corresponding protein id nested
 #            between the second and third underscores
@@ -345,6 +346,8 @@ null.test <- function(total.expression.data, gene.family.data, clusters.file, it
     print(paste("Working on iteration: ", i, sep=""))
     #generate random gene clusters
     random.clusters <- random.gene.clusters(clusters.file, total.expression.data)
+    print(random.clusters)
+    print('---------------------------------')
     
     #global analysis
     
